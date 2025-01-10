@@ -22,22 +22,22 @@ CREATE TABLE tb_personagens (
 
 -- 4. Inserção de registros na tabela tb_classes
 INSERT INTO tb_classes (nome, descricao) VALUES 
-('Guerreiro', 'Especialista em combate corpo a corpo.'),
-('Mago', 'Usuário de magia e feitiços poderosos.'),
-('Arqueiro', 'Perito em ataques à distância com arco e flecha.'),
-('Assassino', 'Mestre das sombras e ataques furtivos.'),
-('Cavaleiro', 'Defensor com alta resistência e armadura pesada.');
+('Detetive', 'Especialista em resolver mistérios e enigmas.'),
+('Aventureiro', 'Explorador de áreas desconhecidas e perigosas.'),
+('Inventor', 'Criador de dispositivos engenhosos e ferramentas.'),
+('Guia Espiritual', 'Conector com o místico e o paranormal.'),
+('Guardião', 'Protetor com habilidades defensivas e resistentes.');
 
 -- 5. Inserção de registros na tabela tb_personagens
 INSERT INTO tb_personagens (nome, poder_ataque, poder_defesa, nivel, classe_id) VALUES
-('Arthas', 2500, 1500, 10, 1),
-('Merlin', 3000, 1200, 12, 2),
-('Legolas', 2200, 1400, 11, 3),
-('Ezio', 2800, 1300, 13, 4),
-('Lancelot', 2400, 1600, 10, 5),
-('Conan', 2600, 1400, 9, 1),
-('Gandalf', 3100, 1300, 14, 2),
-('Hawkeye', 2300, 1500, 12, 3);
+('Dipper', 2300, 1500, 10, 1),
+('Mabel', 2000, 1600, 12, 2),
+('Soos', 1800, 1400, 11, 3),
+('Grenda', 1900, 1300, 13, 4),
+('Stan', 2100, 1600, 10, 5),
+('Wendy', 2000, 1400, 9, 2),
+('McGucket', 1700, 1300, 14, 3),
+('Pacifica', 2200, 1500, 12, 1);
 
 -- 6. SELECT para retornar personagens com poder de ataque maior que 2000
 SELECT * FROM tb_personagens WHERE poder_ataque > 2000;
@@ -49,12 +49,32 @@ SELECT * FROM tb_personagens WHERE poder_defesa BETWEEN 1000 AND 2000;
 SELECT * FROM tb_personagens WHERE nome LIKE '%C%';
 
 -- 9. SELECT com INNER JOIN unindo tb_personagens e tb_classes
-SELECT p.*, c.nome AS classe_nome 
-FROM tb_personagens p 
-INNER JOIN tb_classes c ON p.classe_id = c.id;
+SELECT tb_personagens.*, tb_classes.nome AS classe_nome 
+FROM tb_personagens 
+INNER JOIN tb_classes ON tb_personagens.classe_id = tb_classes.id;
 
--- 10. SELECT com INNER JOIN para personagens de uma classe específica (exemplo: Arqueiros)
-SELECT p.*, c.nome AS classe_nome 
-FROM tb_personagens p 
-INNER JOIN tb_classes c ON p.classe_id = c.id 
-WHERE c.nome = 'Arqueiro';
+-- 10. SELECT com INNER JOIN para personagens de uma classe específica (exemplo: Detetives)
+SELECT tb_personagens.*, tb_classes.nome AS classe_nome 
+FROM tb_personagens 
+INNER JOIN tb_classes ON tb_personagens.classe_id = tb_classes.id 
+WHERE tb_classes.nome = 'Detetive';
+
+-- 11. SELECT para retornar personagens com nível maior que 10
+SELECT * FROM tb_personagens WHERE nivel > 10;
+
+-- 12. SELECT para retornar personagens com poder de ataque entre 2000 e 3000
+SELECT * FROM tb_personagens WHERE poder_ataque BETWEEN 2000 AND 3000;
+
+-- 13. SELECT com INNER JOIN para personagens de uma classe específica e nível maior que 10 (exemplo: Magos)
+SELECT tb_personagens.*, tb_classes.nome AS classe_nome 
+FROM tb_personagens 
+INNER JOIN tb_classes ON tb_personagens.classe_id = tb_classes.id 
+WHERE tb_classes.nome = 'Guia Espiritual' AND tb_personagens.nivel > 10;
+
+-- 14. SELECT para retornar personagens com poder de defesa menor que 1300
+SELECT * FROM tb_personagens WHERE poder_defesa < 1300;
+
+-- 15. SELECT para retornar personagens ordenados por poder de ataque em ordem decrescente
+SELECT * FROM tb_personagens ORDER BY poder_ataque DESC;
+
+SELECT * FROM tb_personagens;

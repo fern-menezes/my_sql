@@ -49,12 +49,12 @@ SELECT * FROM tb_produtos WHERE valor BETWEEN 5.00 AND 60.00;
 SELECT * FROM tb_produtos WHERE nome LIKE '%C%';
 
 -- 9. SELECT com INNER JOIN unindo tb_produtos e tb_categorias
-SELECT p.*, c.nome AS categoria_nome 
-FROM tb_produtos p 
-INNER JOIN tb_categorias c ON p.categoria_id = c.id;
+SELECT tb_produtos.*, tb_categorias.nome AS categoria_nome 
+FROM tb_produtos 
+INNER JOIN tb_categorias ON tb_produtos.categoria_id = tb_categorias.id;
 
 -- 10. SELECT com INNER JOIN para produtos de uma categoria específica (exemplo: Cosméticos)
-SELECT p.*, c.nome AS categoria_nome 
-FROM tb_produtos p 
-INNER JOIN tb_categorias c ON p.categoria_id = c.id 
-WHERE c.nome = 'Cosméticos';
+SELECT tb_produtos.*, tb_categorias.nome AS categoria_nome 
+FROM tb_produtos 
+INNER JOIN tb_categorias ON tb_produtos.categoria_id = tb_categorias.id 
+WHERE tb_categorias.nome = 'Cosméticos';
