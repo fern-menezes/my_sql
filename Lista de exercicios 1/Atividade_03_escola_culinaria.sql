@@ -1,6 +1,6 @@
-CREATE DATABASE db_ecommerce;
+CREATE DATABASE db_escola;
 
-USE db_ecommerce;
+USE db_escola;
 
 CREATE TABLE tb_escola(
     id BIGINT AUTO_INCREMENT,
